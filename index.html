@@ -5,22 +5,18 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="description" content="" />
-  <!--this next line calls for the arcgis api CSS file and java script library.--> 
+  
+  <!--this next block calls for the arcgis api CSS file and java script library.--> 
   <link rel="stylesheet" href="https://js.arcgis.com/4.25/esri/themes/light/main.css">
   <script src="https://js.arcgis.com/4.25/"></script>
-  <!--this batch of code adds the modules, API keys, and map constant needed for full screen map-->
-  <script>
- 
-  <!-- this is to add the modules for a full screen map-->
   
   <script>
+    require(["esri/config", "esri/Map", "esri/views/MapView"], function(esriConfig, Map, MapView)  
+    { });  
+  </script>
 
-    require([
-      "esri/config",
-        "esri/Map", 
-        "esri/views/MapView"
-    ],   function(esriConfig, Map, MapView) {
-      
+  <script>
+
       esriConfig.apiKey = "AAPTxy8BH1VEsoebNVZXo8HurDz4gU3tTW0RIc-K_Y4-kqaP1xP59QOvyV7mnktLb7t9I-nTH1bCIsZkUwAmOsx3mcKEn8U5vRzIoODPCrO4NGYLRPTZQpU9ABAExNsVrqHmz8tYUdBLpXAYLLs7yWSm6KMhP5zK1lz2c6hTcICfoCYbuXO82u6IIM0T_QPseOpeqSpLEXui7oUWkstcwewwOljVBIDCWIr24Uh-0gEJj0pNbG7mZwflVWsFPbMfFG0xAT1_VFqKPzAC";
       const map = new Map({ 
         basemap: "arcgis-topographic" // Basemap layer service 
@@ -34,7 +30,7 @@
         });
     });  
    
-    <script>
+  </script>
 
   <!--this next set of code is to make a full screen map-->
 
