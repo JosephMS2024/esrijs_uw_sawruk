@@ -10,19 +10,22 @@
   <script src="https://js.arcgis.com/4.25/"></script>
   <!--this batch of code adds the modules, API keys, and map constant needed for full screen map-->
   <script>
+ 
+  <!-- this is to add the modules for a full screen map-->
+  
+  <script>
 
-  <!--this is to add the modules for a full screen map-->
-  <script>  
     require([
       "esri/config",
-      "esri/Map", 
-      "esri/views/MapView"
-    ], function(esriConfig, Map, MapView) {
+        "esri/Map", 
+        "esri/views/MapView"
+    ],   function(esriConfig, Map, MapView) {
       
       esriConfig.apiKey = "AAPTxy8BH1VEsoebNVZXo8HurDz4gU3tTW0RIc-K_Y4-kqaP1xP59QOvyV7mnktLb7t9I-nTH1bCIsZkUwAmOsx3mcKEn8U5vRzIoODPCrO4NGYLRPTZQpU9ABAExNsVrqHmz8tYUdBLpXAYLLs7yWSm6KMhP5zK1lz2c6hTcICfoCYbuXO82u6IIM0T_QPseOpeqSpLEXui7oUWkstcwewwOljVBIDCWIr24Uh-0gEJj0pNbG7mZwflVWsFPbMfFG0xAT1_VFqKPzAC";
       const map = new Map({ 
         basemap: "arcgis-topographic" // Basemap layer service 
       });
+
       const view = new MapView({
           map: map,
           center: [-97.7431, 30.2672], // Longitude, latitude
@@ -30,8 +33,11 @@
           container: "viewDiv" // Div element
         });
     });  
-   </script>
+   
+    <script>
+
   <!--this next set of code is to make a full screen map-->
+
   <style>
     html,
     body,
@@ -44,7 +50,8 @@
   </style>
 </head>
 <body>
-  <!--this div to display the map!-->
-  <div id="viewDiv"></div>
+    <!--this div to display the map!-->
+  
+    <div id="viewDiv"></div>
 </body>
 </html>
