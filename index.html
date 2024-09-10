@@ -15,7 +15,9 @@
     require([
       "esri/config", 
           "esri/Map", 
-          "esri/views/MapView"
+          "esri/views/MapView",
+          "esri/widgets/BasemapGallery", // Adding in the basemap gallery
+          "esri/widgets/Locate" // Adding in the locate button
     ], function(esriConfig, Map, MapView)  {
           
       esriConfig.apiKey = "AAPTxy8BH1VEsoebNVZXo8HurDz4gU3tTW0RIc-K_Y4-kqaP1xP59QOvyV7mnktLb7t9zW1QWyrrWLxFNuhtg08WE4UCTkfUJdNwZYJDt3t4FpgDTe6my768nLtuR9R52vilDWW14b_A0oiII_MTXifMG5mWsNz5YWE_2DmWVSv8HLvOGvSxTuyiyXIO42CgmtK6t_fryYvWH93EFjJyrMI-1rfAEQ93vywzL1hBhfIJ13DcfYRrsncNv5iHmEBgfAz8AT1_VFqKPzAC";
@@ -28,7 +30,14 @@
           center: [-149.1811, 61.6113], // Longitude, latitude
           zoom: 10, // Zoom level
           container: "viewDiv" // Div element
-        });
+      });
+       // Add the locate widget to the bottom right corner of the view
+      const locateBtn = new Locate({
+          view: view
+      });
+      view.ui.add(locateBtn, {
+          position: "bottom-right"
+      });
     });  
   </script>
 
