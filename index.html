@@ -1,58 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Hello Map!</title>
+  <title>Hello Map! This is where I live!</title>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="description" content="" />
   
-  <!--this next block calls for the arcgis api CSS file and java script library.--> 
+  <!--arcgis api CSS file and java script library.--> 
   <link rel="stylesheet" href="https://js.arcgis.com/4.25/esri/themes/light/main.css">
   <script src="https://js.arcgis.com/4.25/"></script>
   
-  <!--Adding the momdules, API key, and map constant needed for full screen map app-->
+  <!--Adding the momdules, API key, and all the esri widgets.--> 
   <script>
     require([
       "esri/config", 
           "esri/Map", 
           "esri/views/MapView",
           "esri/widgets/BasemapGallery", // Adding in the basemap gallery
-          "esri/widgets/Locate" // Adding in the locate button
-    ], function(esriConfig, Map, MapView, BasemapGallery, Expand, Locate)  {
-          
+          "esri/widgets/Locate", // Adding in the locate button
+          "esri/widgets/Expand",
+          "esri/Basemap",
+          "esri/widgets/Search"
+    ], function(esriConfig, Map, MapView, BasemapGallery, Expand, Locate, Basemap, Search)  {
+      //The desired original basemap loads; imagery.      
       esriConfig.apiKey = "AAPTxy8BH1VEsoebNVZXo8HurDz4gU3tTW0RIc-K_Y4-kqaP1xP59QOvyV7mnktLb7t9zW1QWyrrWLxFNuhtg08WE4UCTkfUJdNwZYJDt3t4FpgDTe6my768nLtuR9R52vilDWW14b_A0oiII_MTXifMG5mWsNz5YWE_2DmWVSv8HLvOGvSxTuyiyXIO42CgmtK6t_fryYvWH93EFjJyrMI-1rfAEQ93vywzL1hBhfIJ13DcfYRrsncNv5iHmEBgfAz8AT1_VFqKPzAC";
       const map = new Map({
         basemap: "arcgis-imagery"
       });
-      
+      //Challenge 2 above with basemap change, and Challenge 1 below - center and scale changed; shifted to Palmer, AK. 
       const view = new MapView({
-          map: map,
-          center: [-149.1811, 61.6113], // Longitude, latitude
-          zoom: 10, // Zoom level
-          container: "viewDiv" // Div element
+        map: map,
+        center: [-149.1811, 61.6113], // Longitude, latitude for Palmer, Alaska
+        zoom: 11, // Zoom level
+        container: "viewDiv" // Div element
       });
-      
+      // Challenge 3; The basemap gallery fails to load; unsure on fix. 
       const basemapGallery = new BasemapGallery({
         view: view,
-        container: basemapGalleryDiv
+        source: [Basemap.fromId("arcgis-topographic"),Basemap.fromId("arcgis-streets")]
       });
 
-      // Add the widget to the top-right corner of the view
-      view.ui.add(basemapGallery, {
-        position: "top-right"
+      const bgExpand = new Expand({
+        view: view,
+        content: basemapGallery
       });
 
-      // Add the locate widget to the bottom right corner of the view
+      view.ui.add(bgExpand, "top-left"); //this controls the location of the "locate" widget in the UI. 
+
+      //Challenge 5; The search widget is functioning as it should.       
+      const searchWidget = new Search({
+        view: view
+      });
+      view.ui.add(searchWidget, {
+        position: "top-right",
+        index: 2
+      });
+      //Challenge 4; the locate button is working as it should. 
       const locateBtn = new Locate({
-          view: view
+        view: view
       });
+
       view.ui.add(locateBtn, {
           position: "bottom-right"
       });
     });  
   </script>
-
-  <!--this next set of code is to make a full screen map-->
 
   <style>
     html,
@@ -63,15 +75,10 @@
       height: 100%;
       width: 100%;
     }
-    
-    div id="viewDiv"></div>
-    div id="basemapGalleryDiv"></div>
-
   </style>
 </head>
 <body>
-  <!--this div to display the map!-->
-  
+   
   <div id="viewDiv"></div>
 </body>
 </html>
