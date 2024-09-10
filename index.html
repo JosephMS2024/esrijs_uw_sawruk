@@ -18,7 +18,7 @@
           "esri/views/MapView",
           "esri/widgets/BasemapGallery", // Adding in the basemap gallery
           "esri/widgets/Locate" // Adding in the locate button
-    ], function(esriConfig, Map, MapView, BasemapGallery, Expand, locateBtn)  {
+    ], function(esriConfig, Map, MapView, BasemapGallery, Expand, Locate)  {
           
       esriConfig.apiKey = "AAPTxy8BH1VEsoebNVZXo8HurDz4gU3tTW0RIc-K_Y4-kqaP1xP59QOvyV7mnktLb7t9zW1QWyrrWLxFNuhtg08WE4UCTkfUJdNwZYJDt3t4FpgDTe6my768nLtuR9R52vilDWW14b_A0oiII_MTXifMG5mWsNz5YWE_2DmWVSv8HLvOGvSxTuyiyXIO42CgmtK6t_fryYvWH93EFjJyrMI-1rfAEQ93vywzL1hBhfIJ13DcfYRrsncNv5iHmEBgfAz8AT1_VFqKPzAC";
       const map = new Map({
@@ -42,8 +42,9 @@
         view: view,
         content: basemapGallery
       });
-      // Add Expand widget to the top-right corner
-      view.ui.add(expand, "top-right");
+      view.ui.add(expand, {
+          position: "top-right"
+      });
     });  
   </script>
 
