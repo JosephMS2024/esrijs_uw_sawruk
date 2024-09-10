@@ -31,19 +31,23 @@
           zoom: 10, // Zoom level
           container: "viewDiv" // Div element
       });
-       // Add the locate widget to the bottom right corner of the view
+      
+      const basemapGallery = new BasemapGallery({
+        view: view,
+        container: basemapGalleryDiv
+      });
+
+      // Add the widget to the top-right corner of the view
+      view.ui.add(basemapGallery, {
+        position: "top-right"
+      });
+
+      // Add the locate widget to the bottom right corner of the view
       const locateBtn = new Locate({
           view: view
       });
       view.ui.add(locateBtn, {
           position: "bottom-right"
-      });
-      const expand = new Expand({
-        view: view,
-        content: basemapGallery
-      });
-      view.ui.add(expand, {
-          position: "top-right"
       });
     });  
   </script>
@@ -59,6 +63,10 @@
       height: 100%;
       width: 100%;
     }
+    
+    div id="viewDiv"></div>
+    div id="basemapGalleryDiv"></div>
+
   </style>
 </head>
 <body>
